@@ -86,6 +86,36 @@ from builder.wheel import copy_wheels_from_cache, fix_wheels_name, run_auditwhee
 @click.option(
     "--timeout", default=345, type=int, help="Max runtime for pip before abort."
 )
+@click.option(
+    "--ftp-host",
+    # required=True,
+    type=str,
+    help="FTP host pass to upload plugin."
+)
+@click.option(
+    "--ftp-user",
+    # required=True,
+    type=str,
+    help="FTP User pass to upload plugin."
+)
+@click.option(
+    "--ftp-password",
+    # required=True,
+    type=str,
+    help="FTP Password pass to upload plugin."
+)
+@click.option(
+    "--ftp-remote",
+    # required=True,
+    type=str,
+    help="FTP remote directory pass to upload plugin."
+)
+@click.option(
+    "--ftp-mirror-options",
+    # required=True,
+    type=str,
+    help="FTP mirror options pass to upload plugin."
+)
 def builder(
     apk: str,
     pip: str,
@@ -105,6 +135,11 @@ def builder(
     remote: str,
     port: str,
     timeout: int,
+    ftp_host: str,
+    ftp_user: str,
+    ftp_password: str,
+    ftp_remote: str,
+    ftp_mirror_options: str,
 ):
     """Build wheels precompiled for Home Assistant container."""
     install_apks(apk)
@@ -179,7 +214,7 @@ def builder(
 
         fix_wheels_name(wheels_dir)
         if not test:
-            run_upload(upload, port, output, remote)
+            run_upload(upload, port, output, remote, ftp_host, ftp_user, ftp_password, ftp_remote, ftp_mirror_options)
 
     sys.exit(exit_code)
 
