@@ -29,14 +29,31 @@ from builder.utils import check_url
 from builder.wheel import copy_wheels_from_cache, fix_wheels_name, run_auditwheel
 
 
-@click.command("builder")
-@click.option("--apk", default="build-base", help="APKs they are needed to build this.")
-@click.option("--tag", default="", help="The tag used.")
-@click.option("--arch", default="amd64", help="The architecture we build for.")
-@click.option("--pip", default="Cython", help="PiPy modules needed to build this.")
-@click.option("--index", required=True, help="Index URL of remote wheels repository.")
-@click.option(
-    "--skip-binary", default=":none:", help="List of packages to skip wheels from pypi."
+@click.command("builder"
+)
+@click.option("--apk",
+    default="build-base",
+    help="APKs they are needed to build this."
+)
+@click.option("--tag",
+    default="",
+    help="The tag used."
+)
+@click.option("--arch",
+    default="amd64",
+    help="The architecture we build for."
+)
+@click.option("--pip",
+    default="Cython",
+    help="PiPy modules needed to build this."
+)
+@click.option("--index",
+    required=True,
+    help="Index URL of remote wheels repository."
+)
+@click.option("--skip-binary",
+    default=":none:",
+    help="List of packages to skip wheels from pypi."
 )
 @click.option(
     "--requirement",
@@ -71,20 +88,38 @@ from builder.wheel import copy_wheels_from_cache, fix_wheels_name, run_auditwhee
     help="Use auditwheel to include dynamic linked library.",
 )
 @click.option(
-    "--local", is_flag=True, default=False, help="Build wheel from local folder setup."
+    "--local",
+    is_flag=True,
+    default=False,
+    help="Build wheel from local folder setup."
 )
 @click.option(
-    "--test", is_flag=True, default=False, help="Test building wheels, no upload."
+    "--test",
+    is_flag=True,
+    default=False,
+    help="Test building wheels, no upload."
 )
-@click.option("--upload", default="rsync", help="Upload plugin to upload wheels.")
-@click.option(
-    "--remote", required=True, type=str, help="Remote URL pass to upload plugin."
+@click.option("--upload",
+    default="rsync",
+    help="Upload plugin to upload wheels."
 )
 @click.option(
-    "--wheels-port", required=True, type=str, help="Remote port pass to upload plugin."
+    "--remote",
+    required=True,
+    type=str,
+    help="Remote URL pass to upload plugin."
 )
 @click.option(
-    "--timeout", default=345, type=int, help="Max runtime for pip before abort."
+    "--wheels-port",
+    required=True,
+    type=str,
+    help="Remote port pass to upload plugin."
+)
+@click.option(
+    "--timeout",
+    default=345,
+    type=int,
+    help="Max runtime for pip before abort."
 )
 @click.option(
     "--ftp-host",
