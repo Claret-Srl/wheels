@@ -184,6 +184,7 @@ runs:
           --apk "${{ inputs.apk }}" \
           --pip "${{ inputs.pip }}" \
           --index "${{ inputs.wheels-index }}" \
+          --port "${{ inputs.wheels-port }}" \
           --upload "${{ inputs.upload }}" \
           --remote "${{ inputs.wheels-user }}@${{ inputs.wheels-host }}:/opt/wheels" \
           --ftp-host "${{ inputs.ftp-host }}" \

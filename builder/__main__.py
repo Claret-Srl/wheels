@@ -110,7 +110,7 @@ from builder.wheel import copy_wheels_from_cache, fix_wheels_name, run_auditwhee
     help="Remote URL pass to upload plugin."
 )
 @click.option(
-    "--wheels-port",
+    "--port",
     required=True,
     type=str,
     help="Remote port pass to upload plugin."
@@ -168,7 +168,7 @@ def builder(
     tag: str,
     arch: str,
     remote: str,
-    wheels_port: str,
+    port: str,
     timeout: int,
     ftp_host: str,
     ftp_user: str,
@@ -249,7 +249,7 @@ def builder(
 
         fix_wheels_name(wheels_dir)
         if not test:
-            run_upload(upload, wheels_port, output, remote, ftp_host, ftp_user, ftp_password, ftp_remote, ftp_mirror_options)
+            run_upload(upload, port, output, remote, ftp_host, ftp_user, ftp_password, ftp_remote, ftp_mirror_options)
 
     sys.exit(exit_code)
 
