@@ -1,3 +1,4 @@
+
 name: "Home Assistant wheels builder"
 description: "Builds and publishes python wheels"
 inputs:
@@ -64,6 +65,9 @@ inputs:
   wheels-index:
     description: "The wheels index URL"
     default: "https://wheels.home-assistant.io"
+  upload:
+    description: "The plugin to upload wheels (rsync/lftp)"
+    default: "rsync"
   ftp-host:
     description: "FTP Host"
     required: false
