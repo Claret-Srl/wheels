@@ -81,6 +81,9 @@ from builder.wheel import copy_wheels_from_cache, fix_wheels_name, run_auditwhee
     "--remote", required=True, type=str, help="Remote URL pass to upload plugin."
 )
 @click.option(
+    "--port", required=True, type=str, help="Remote port pass to upload plugin."
+)
+@click.option(
     "--timeout", default=345, type=int, help="Max runtime for pip before abort."
 )
 def builder(
@@ -100,6 +103,7 @@ def builder(
     tag: str,
     arch: str,
     remote: str,
+    port: str,
     timeout: int,
 ):
     """Build wheels precompiled for Home Assistant container."""
@@ -175,7 +179,7 @@ def builder(
 
         fix_wheels_name(wheels_dir)
         if not test:
-            run_upload(upload, output, remote)
+            run_upload(upload, port, output, remote)
 
     sys.exit(exit_code)
 
