@@ -33,7 +33,10 @@ jobs:
         with:
           tag: ${{ matrix.python }}-alpine${{ matrix.alpine }}
           arch: ${{ matrix.arch }}
-          wheels-host: wheels.hass.io
+          wheels-host: ${{ secrets.WHEELS_HOST }}      
+          wheels-port: ${{ secrets.WHEELS_PORT }}
+          wheels-user: ${{ secrets.WHEELS_USER }}
           wheels-key: ${{ secrets.WHEELS_KEY }}
+          wheels-index: "https://claret.io/sandbox/drypatrick/wheels"
           apk: "build-base;libffi-dev;openssl-dev"
           requirements: "requirements_all.txt"
