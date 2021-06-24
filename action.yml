@@ -55,6 +55,9 @@ inputs:
   wheels-host:
     description: "wheels host URL"
     default: "wheels.hass.io"
+  wheels-port:
+    description: "wheels port"
+    required: false
   wheels-user:
     description: "User for wheels host"
     default: "wheels"
