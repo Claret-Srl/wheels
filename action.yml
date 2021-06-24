@@ -61,6 +61,26 @@ inputs:
   wheels-index:
     description: "The wheels index URL"
     default: "https://wheels.home-assistant.io"
+  ftp-host:
+    description: "FTP Host"
+    required: false
+    default: ""
+  ftp-user:
+    description: "FTP User"
+    required: false
+    default: ""
+  ftp-password:
+    description: "FTP Password"
+    required: false
+    default: ""
+  ftp-remote:
+    description: "FTP wheels host remote directory"
+    required: false
+    default: ""
+  ftp-mirror-options:
+    description: "FTP Mirror Options"
+    required: false
+    default: ""
 
 runs:
   using: "composite"
@@ -157,8 +177,13 @@ runs:
           --apk "${{ inputs.apk }}" \
           --pip "${{ inputs.pip }}" \
           --index "${{ inputs.wheels-index }}" \
-          --upload rsync \
+          --upload "${{ inputs.upload }}" \
           --remote "${{ inputs.wheels-user }}@${{ inputs.wheels-host }}:/opt/wheels" \
+          --ftp-host "${{ inputs.ftp-host }}" \
+          --ftp-user "${{ inputs.ftp-user }}" \
+          --ftp-password "${{ inputs.ftp-password }}" \
+          --ftp-remote "${{ inputs.ftp-remote }}" \
+          --ftp-mirror-options "${{ inputs.ftp-mirror-options }}" \
           --arch "${{ inputs.arch }}" \
           --tag "${{ inputs.tag }}" \
           ${{ steps.options.outputs.build }}
