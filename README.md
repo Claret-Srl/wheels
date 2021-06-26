@@ -1,6 +1,6 @@
-[![Release Drafter](https://github.com/Claret-Srl/wheels/actions/workflows/release-drafter.yml/badge.svg)](https://github.com/Claret-Srl/wheels/actions/workflows/release-drafter.yml)
-[![CI](https://github.com/Claret-Srl/wheels/actions/workflows/ci.yml/badge.svg)](https://github.com/Claret-Srl/wheels/actions/workflows/ci.yml)
-[![Wheels](https://github.com/Claret-Srl/wheels/actions/workflows/build-wheels.yml/badge.svg)](https://github.com/Claret-Srl/wheels/actions/workflows/build-wheels.yml)
+[![Release Drafter](https://github.com/claret-srl/wheels/actions/workflows/release-drafter.yml/badge.svg)](https://github.com/claret-srl/wheels/actions/workflows/release-drafter.yml)
+[![CI](https://github.com/claret-srl/wheels/actions/workflows/ci.yml/badge.svg)](https://github.com/claret-srl/wheels/actions/workflows/ci.yml)
+[![Wheels](https://github.com/claret-srl/wheels/actions/workflows/build-wheels.yml/badge.svg)](https://github.com/claret-srl/wheels/actions/workflows/build-wheels.yml)
 
 # Home Assistant Wheels builder
 
