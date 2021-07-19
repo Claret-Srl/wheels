@@ -102,7 +102,7 @@ runs:
 
           # Validate & update known_hosts
           ssh-keygen -y -e -f .ssh/id_rsa
-          ssh-keyscan -H -p ${{ inputs.wheels-port }} ${{ inputs.wheels-host }} >> .ssh/known_hosts
+          # ssh-keyscan -H -p ${{ inputs.wheels-port }} ${{ inputs.wheels-host }} >> .ssh/known_hosts
           chmod 600 .ssh/*
         fi
 
