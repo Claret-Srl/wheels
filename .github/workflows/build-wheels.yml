@@ -33,7 +33,16 @@ jobs:
         with:
           tag: ${{ matrix.python }}-alpine${{ matrix.alpine }}
           arch: ${{ matrix.arch }}
-          wheels-host: wheels.hass.io
+          wheels-host: ${{ secrets.WHEELS_HOST }}      
+          wheels-port: ${{ secrets.WHEELS_PORT }}
+          wheels-user: ${{ secrets.WHEELS_USER }}
           wheels-key: ${{ secrets.WHEELS_KEY }}
+          wheels-index: "https://claret.io/sandbox/drypatrick/wheels"
+          upload: "lftp"
+          ftp-host: ${{ secrets.FTP_HOST }}
+          ftp-user: ${{ secrets.FTP_USER }}
+          ftp-password: ${{ secrets.FTP_PSW }}
+          ftp-remote: "www/sandbox/drypatrick/wheels/"
+          ftp-mirror-options: "--reverse --no-perms --only-missing" # --verbose
           apk: "build-base;libffi-dev;openssl-dev"
           requirements: "requirements_all.txt"

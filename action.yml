@@ -1,3 +1,4 @@
+
 name: "Home Assistant wheels builder"
 description: "Builds and publishes python wheels"
 inputs:
@@ -55,12 +56,38 @@ inputs:
   wheels-host:
     description: "wheels host URL"
     default: "wheels.hass.io"
+  wheels-port:
+    description: "wheels port"
+    required: false
   wheels-user:
     description: "User for wheels host"
     default: "wheels"
   wheels-index:
     description: "The wheels index URL"
     default: "https://wheels.home-assistant.io"
+  upload:
+    description: "The plugin to upload wheels (rsync/lftp)"
+    default: "rsync"
+  ftp-host:
+    description: "FTP Host"
+    required: false
+    default: ""
+  ftp-user:
+    description: "FTP User"
+    required: false
+    default: ""
+  ftp-password:
+    description: "FTP Password"
+    required: false
+    default: ""
+  ftp-remote:
+    description: "FTP wheels host remote directory"
+    required: false
+    default: ""
+  ftp-mirror-options:
+    description: "FTP Mirror Options"
+    required: false
+    default: ""
 
 runs:
   using: "composite"
@@ -75,7 +102,7 @@ runs:
 
           # Validate & update known_hosts
           ssh-keygen -y -e -f .ssh/id_rsa
-          ssh-keyscan -H ${{ inputs.wheels-host }} >> .ssh/known_hosts
+          ssh-keyscan -H -p ${{ inputs.wheels-port }} ${{ inputs.wheels-host }} >> .ssh/known_hosts
           chmod 600 .ssh/*
         fi
 
@@ -157,8 +184,14 @@ runs:
           --apk "${{ inputs.apk }}" \
           --pip "${{ inputs.pip }}" \
           --index "${{ inputs.wheels-index }}" \
-          --upload rsync \
+          --port "${{ inputs.wheels-port }}" \
+          --upload "${{ inputs.upload }}" \
           --remote "${{ inputs.wheels-user }}@${{ inputs.wheels-host }}:/opt/wheels" \
+          --ftp-host "${{ inputs.ftp-host }}" \
+          --ftp-user "${{ inputs.ftp-user }}" \
+          --ftp-password "${{ inputs.ftp-password }}" \
+          --ftp-remote "${{ inputs.ftp-remote }}" \
+          --ftp-mirror-options "${{ inputs.ftp-mirror-options }}" \
           --arch "${{ inputs.arch }}" \
           --tag "${{ inputs.tag }}" \
           ${{ steps.options.outputs.build }}
