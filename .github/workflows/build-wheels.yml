@@ -18,6 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
+      max-parallel: 10
       matrix:
         python: ["3.8", "3.9"]
         alpine: ["3.11", "3.12", "3.13"]
